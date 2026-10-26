@@ -129,26 +129,35 @@ public final class AccessSwitch {
     private static void openSettings(Context context) {
         ComponentName component = new ComponentName(context, YoutubeBlockService.class);
         String flat = component.flattenToString();
-        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent = new Intent(DETAILS_SETTINGS);
-            intent.putExtra(Intent.EXTRA_COMPONENT_NAME, flat);
+        // Android 16 guards the details screen with a privileged permission, so a
+        // normal app is denied and must open the accessibility list instead.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && Build.VERSION.SDK_INT < Build.VERSION_CODES.BAKLAVA) {
+            Intent details = new Intent(DETAILS_SETTINGS);
+            details.putExtra(Intent.EXTRA_COMPONENT_NAME, component);
+            if (launch(context, details)) {
+                return;
+            }
         }
+        Intent list = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
         Bundle args = new Bundle();
         args.putString(":settings:fragment_args_key", flat);
-        intent.putExtra(":settings:fragment_args_key", flat);
-        intent.putExtra(":settings:show_fragment_args", args);
+        list.putExtra(":settings:fragment_args_key", flat);
+        list.putExtra(":settings:show_fragment_args", args);
+        if (!launch(context, list)) {
+            launch(context, new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
+        }
+    }
+
+    private static boolean launch(Context context, Intent intent) {
         if (!(context instanceof Activity)) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         try {
             context.startActivity(intent);
-        } catch (ActivityNotFoundException error) {
-            Intent fallback = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-            if (!(context instanceof Activity)) {
-                fallback.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            }
-            context.startActivity(fallback);
+            return true;
+        } catch (ActivityNotFoundException | SecurityException error) {
+            return false;
         }
     }
 }

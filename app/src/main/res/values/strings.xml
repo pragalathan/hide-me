@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HideMe</string>
+    <string name="accessibility_service_desc">HideMe, by PrimeByte Pvt Ltd, uses this service to notice when YouTube opens. During the hours you choose, it leaves YouTube. It does not read what is on screen.</string>
+    <string name="subtitle">YouTube closes during the hours you choose.</string>
+    <string name="developed_by">Developed by PrimeByte Pvt Ltd</string>
+    <string name="status_off_title">HideMe is paused</string>
+    <string name="status_off_detail">Accessibility is off, so banking apps can open. YouTube stays available until you turn HideMe on.</string>
+    <string name="status_off_detail_settings">Accessibility is off, so banking apps can open. The next screen is the HideMe switch. Turn it on there.</string>
+    <string name="status_hidden_title">YouTube is hidden</string>
+    <string name="status_hidden_detail">Opening it now sends you home. It comes back at %1$s.</string>
+    <string name="status_hidden_always">Opening it now sends you home.</string>
+    <string name="status_allowed_title">YouTube is allowed</string>
+    <string name="status_allowed_detail">HideMe is watching. YouTube stays available until the next quiet hours.</string>
+    <string name="turn_on">Turn HideMe on</string>
+    <string name="pause">Pause HideMe</string>
+    <string name="schedule_title">Quiet hours</string>
+    <string name="schedule_hint">Each day has its own hours. A later hide time runs through midnight and ends the next morning.</string>
+    <string name="from_time">Hide from %1$s</string>
+    <string name="until_time">Allow again at %1$s</string>
+    <string name="until_time_next">Allow again at %1$s, next morning</string>
+    <string name="pick_start_day">Hide YouTube on %1$s from</string>
+    <string name="pick_end_day">Allow YouTube on %1$s again at</string>
+    <string name="same_time">These times match, so YouTube stays available.</string>
+    <string name="day_switch">Quiet hours on %1$s</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="pin_create">Choose a 4-digit PIN</string>
+    <string name="pin_confirm">Enter that PIN again</string>
+    <string name="pin_unlock">Enter your PIN</string>
+    <string name="pin_wrong">Wrong PIN</string>
+    <string name="pin_mismatch">Those PINs don’t match. Start again.</string>
+    <string name="pin_wait">Try again in %1$d seconds</string>
+    <string name="pin_delete">Delete</string>
+</resources>
